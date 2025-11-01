@@ -45,31 +45,33 @@ const Dashboard = () => {
   }, []);
 
   // ✅ Fetch data from backend
-  const fetchData = async (districtName) => {
-    try {
-      setLoading(true);
-      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
-const res = await fetch(`${API_BASE_URL}/api/mgnrega/${district}`);
+ // ✅ Fetch data from backend
+const fetchData = async (districtName) => {
+  try {
+    setLoading(true);
+    const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+    const res = await fetch(`${API_BASE_URL}/api/mgnrega/${districtName}`);
 
-      const result = await res.json();
-console.log("Fetched data:", result);
+    const result = await res.json();
+    console.log("Fetched data:", result);
 
-if (result?.data?.summary) {
-  setData({
-    person_days: result.data.summary.total_persondays,
-    households_completed: result.data.summary.households_completed,
-    wages_paid: result.data.summary.total_wages_paid,
-  });
-} else {
-  setData(null);
-}
-
-    } catch (error) {
-      console.error("Error fetching MGNREGA data:", error);
-    } finally {
-      setLoading(false);
+    if (result?.data?.summary) {
+      setData({
+        person_days: result.data.summary.total_persondays,
+        households_completed: result.data.summary.households_completed,
+        wages_paid: result.data.summary.total_wages_paid,
+      });
+    } else {
+      setData(null);
     }
-  };
+  } catch (error) {
+    console.error("Error fetching MGNREGA data:", error);
+    setData(null);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   // ✅ Manual search
   const handleSearch = (e) => {
