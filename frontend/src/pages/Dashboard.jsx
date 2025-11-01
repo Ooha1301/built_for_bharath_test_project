@@ -210,12 +210,8 @@ const fetchData = async (districtName) => {
           maxWidth: "700px",
         }}
       >
-        <h3 style={{ color: "#065f46", marginBottom: "8px" }}>Roots</h3>
-        <p style={{ color: "#6b7280", lineHeight: "1.6" }}>
-          {district
-            ? `${district} has a long-standing history of rural development and community participation, contributing greatly to the MGNREGA mission.`
-            : "Detecting your district’s history..."}
-        </p>
+        <h3 style={{ color: "#065f46", marginBottom: "8px" }}>Thank You for visiting our Website</h3>
+       
       </footer>
     </div>
   );
