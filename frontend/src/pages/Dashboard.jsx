@@ -48,7 +48,9 @@ const Dashboard = () => {
   const fetchData = async (districtName) => {
     try {
       setLoading(true);
-      const res = await fetch(`http://localhost:5000/api/mgnrega/${districtName}`);
+      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+const res = await fetch(`${API_BASE_URL}/api/mgnrega/${district}`);
+
       const result = await res.json();
 console.log("Fetched data:", result);
 
